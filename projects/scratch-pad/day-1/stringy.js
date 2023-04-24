@@ -213,13 +213,15 @@ function sortAscending(stringOne, stringTwo) {
 // c : n/a
 // e : will both inputs always be a string?
 
-//add strings to array to use sort method
-let arr = [stringOne, stringTwo];
+//use comparison operator to get boolean to return requested output for condition 
 
-//user ternary operator to deal with conditionals
-return arr.sort((a, b) => {
-    return a === b ? 0 : a < b ? -1 : 1;
-})
+if(stringOne > stringTwo){
+    return -1
+} else if(stringTwo > stringOne){
+    return 1
+} else if (stringOne === stringTwo){
+    return 0
+}
 
 
     // YOUR CODE ABOVE HERE //
@@ -235,9 +237,22 @@ return arr.sort((a, b) => {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+// i : 2 parameters, 2 strings
+// o : return 1 if stringOne is lower in alphabetical order than string 2, return 0 if equal alphabetical order, return -1 if 
+//stringTwo is lower in alphabetical order than stringOne
+// c : n/a
+// e : will both inputs always be a string?
+
+//use comparison operator to get boolean to return requested output for condition 
 
 
-
+if(stringOne > stringTwo){
+    return 1
+} else if(stringTwo > stringOne){
+    return -1
+} else if (stringOne === stringTwo){
+    return 0
+}
 
     // YOUR CODE ABOVE HERE //
 }

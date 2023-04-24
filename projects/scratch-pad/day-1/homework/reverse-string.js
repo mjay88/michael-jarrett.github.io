@@ -21,9 +21,20 @@
 
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
+// i : a string
+// o : the string reversed
+// c : n/a
+// e : should be able to accomplish in one line,  how to do recursively? 
+
+//using reverse array method...
+  //convert input into array of individual letters
+   let arrayOfLetters = input.split('');
+  //use reverse method on array
+  let reversedArray = arrayOfLetters.reverse(); 
+  //use join method on array
+  let reversedInput = reversedArray.join('');
+  //return joined array
+    return reversedInput;
     
     // YOUR CODE GOES ABOVE HERE //
 }
