@@ -34,8 +34,25 @@
  */
 
 function greeter(hour) {
+//i: number
+//o: greeting string based on value of input
+//c: case sensitive, proper use of if else chaining
+//e: what if input is falsey?
     // YOUR CODE BELOW HERE //
-    
+    // if hour is 0-11 Good Morning!
+    if(hour >= 0 && hour <= 11){
+        console.log("Good Morning!")
+     // hour is 12-16 Good Afternoon! 
+    } else if(hour >= 12 && hour <= 16){
+        console.log("Good Afternoon!")
+    // hour is 17-21 Good Evening!
+    }else if(hour >= 17 && hour <= 21){
+        console.log("Good Evening!")
+    // hour is 22-24 Good Night!
+    } else if(hour >= 22 && hour <= 24) {
+        console.log('Good Night!');
+    }
+
     
     
     

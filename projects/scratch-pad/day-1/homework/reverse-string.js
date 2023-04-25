@@ -28,13 +28,33 @@ function reverseString(input) {
 
 //using reverse array method...
   //convert input into array of individual letters
-   let arrayOfLetters = input.split('');
-  //use reverse method on array
-  let reversedArray = arrayOfLetters.reverse(); 
-  //use join method on array
-  let reversedInput = reversedArray.join('');
-  //return joined array
-    return reversedInput;
+  //  let arrayOfLetters = input.split('');
+  // //use reverse method on array
+  // let reversedArray = arrayOfLetters.reverse(); 
+  // //use join method on array
+  // let reversedInput = reversedArray.join('');
+  // //return joined array
+  //   return reversedInput;
+
+  //recursive pseudocode
+
+  //create return string variable
+ let reversedString = "";
+  //base case, once length of array is 0 return
+if(input.length === 0){
+  console.log('no more')
+  console.log(reversedString);
+  return reversedString;
+}
+  //recusive case : grab the last index of input string, concat onto  return string variable 
+
+ reversedString + input[input.length - 1] 
+ console.log(input[input.length - 1]);
+console.log(reversedString);
+ return reversedString + input[input.length - 1] + (reverseString(input.slice(0, input.length - 1)))
+
+
+
     
     // YOUR CODE GOES ABOVE HERE //
 }
