@@ -40,7 +40,7 @@ function range(start, end) {
     }
   } else if (end < start) {
     //if less than, create for loop starting at end and stopping at start param
-    for (let i = end; i < start; i--) {
+    for (let i = start; i >= end; i--) {
       //push all iterated values into result array
       console.log(i);
       resultArray.push(i);
