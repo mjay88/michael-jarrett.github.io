@@ -23,7 +23,7 @@ function isArray(value) {
 
 /** 
  * Given an input value, return true if the value is an Object intended as a 
- * collection, false if otherwise.
+ * collection, (key value pairs) false if otherwise.
  * 
  * TIP: In JavaScript, how can we decipher if a value is an Object, but not 
  * null, not an Array, not a Date - all of these will return 'object' if used 
