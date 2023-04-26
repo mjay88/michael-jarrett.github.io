@@ -141,14 +141,17 @@ function getObjectLength(object) {
 
   // YOUR CODE BELOW HERE //
 //create an array to return
-let resultArray = [];
-//use a for...in loop to iterate over object pushing it's keys and value into an array as sub array
-for(let key in object){
-  resultArray.push([key, object[key]])
-}
-//return the length of the array
-return resultArray.length;
+// let resultArray = [];
+// //use a for...in loop to iterate over object pushing it's keys and value into an array as sub array
+// for(let key in object){
+//   resultArray.push([key, object[key]])
+// }
+// //return the length of the array
+// return resultArray.length;
 
+
+//one line
+return Object.keys(object).length;
 // YOUR CODE ABOVE HERE //
 }
 
