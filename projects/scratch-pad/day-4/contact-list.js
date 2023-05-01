@@ -98,20 +98,28 @@ function makeContactList() {
 //c : the last string should not be followed by a new line character
 //e : how to get rid of last new line character?
         printAllContactNames : function(){
+            //*using string interpolation
             //create sting to log at end
             let contactListToPrint = "";
             //iterate through contacts
-            // for(let el of contacts){
-            // //use string iterpolation to get first and last name
-            // console.log(`${el.nameFirst} ${el.nameLast}
-            // `)
-            // }
-            //iterate through contacts
             for(let el of contacts){
-            //add all contact names to contactListToPrint w/ new line character
-            contactListToPrint += el.nameFirst + " " + el.nameLast + "\n";
+            //use string iterpolation to get first and last name and add to contactListToPrint
+            contactListToPrint += `${el.nameFirst} ${el.nameLast}\n`
             }
-            //log contactListToPrint removing the very last string index
+          
+          
+          
+           //*using string concatination
+            // //iterate through contacts
+            // for(let el of contacts){
+            // //add all contact names to contactListToPrint w/ new line character
+            // contactListToPrint += el.nameFirst + " " + el.nameLast + "\n";
+            // }
+
+            //return contactListToPrint removing the very last string index
+            
+            console.log(contactListToPrint);
+            
             return contactListToPrint.slice(0, -1);
 
         }
