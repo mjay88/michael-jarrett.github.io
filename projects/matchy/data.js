@@ -119,8 +119,10 @@ var friends = [];
 //math.floor rounds a floating number down to nearest integer
 //math.random returns a random number based on a given range
 function getRandom(arr){
+  //create a variable that will represent a random index in our array
+  //assign the range to the length of our array so it always returns an index that exists
   let random =  Math.floor(Math.random() * arr.length);
-  console.log(random, 'random index line 123')
+
   return random;
 }
 let randomAnimal = animals[getRandom(animals)];
@@ -131,7 +133,7 @@ friends.push(randomAnimal.name);
 console.log(friends, 'friends line 129')
 // 8. [ ] Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
 // animals[Math.floor(Math.random() * animals.length - 1)].friends = friends;
- animals[1].friends = friends;
+ animals[Math.floor(Math.random() * animals.length)].friends = friends;
 
 // 9. [ ] `console.log` your work.
 console.log(animals, 'line 133')
