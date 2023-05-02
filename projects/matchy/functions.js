@@ -87,22 +87,16 @@ function remove(animals, name) {
 //     - Adds this new Object to the `animals` Array, **only** if all the other conditions pass.
 //     - Make sure it works.
 function add(animals, animal) {
-  //check if animal.species.length > 0, check if animal.name.length > 0,
-
-  //iterate through animals, and check if our animal to adds name already exists
-
-  for (let i = 0; i < animals.length; i++) {
-    console.log(animals[i].name, animal.name, "line 97");
-    if (
-      animals[i].name !== animal.name &&
-      animal.name.length > 0 &&
-      animal.species.length > 0
-    ) {
-      //if above conditions are met add animal to animals array
-
-      animals.push(animal);
-    } else {
-        console.log('same name')
+  if (animal.name.length > 0 && animal.species.length > 0) {
+    for (let i = 0; i < animals.length; i++) {
+      console.log(animals[i].name, animal.name, "comparing");
+      if (animals[i].name === animal.name) {
+        console.log("sorry, names match");
+        break;
+      } else if (animals[i].name !== animal.name) {
+        animals.push(animal);
+        break;
+      }
     }
   }
 }
