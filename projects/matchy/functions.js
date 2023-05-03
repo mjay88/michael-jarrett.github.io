@@ -86,20 +86,29 @@ function remove(animals, name) {
 //     - Has a **unique** name, meaning no other animals have that name.
 //     - Adds this new Object to the `animals` Array, **only** if all the other conditions pass.
 //     - Make sure it works.
+
+//make a function that takes 2 paramaters, animals array and animal object to add to animals array
 function add(animals, animal) {
+  //check if the animal to add object exists by checking for its name length and its species length
   if (animal.name.length > 0 && animal.species.length > 0) {
+    //if the name and species is the appropriate length, iterate through 
     for (let i = 0; i < animals.length; i++) {
-      console.log(animals[i].name, animal.name, "comparing");
+      //if an animals name matches the animal we are trying to add, break
       if (animals[i].name === animal.name) {
-        console.log("sorry, names match");
-        break;
-      } else if (animals[i].name !== animal.name) {
-        animals.push(animal);
-        break;
-      }
+        //loop ends function returns nothing
+        console.log('that user already exists')
+        return;
+      } 
     }
+    //if we make it through the entire array checking if the name matches, that means there are not matches, push animal into animals array
+    animals.push(animal);
   }
+  
+  
+
 }
+
+
 //  This is called **data validation** and it's extremely important in web development!
 /**
  * You did it! You're all done with Matchy!

@@ -132,8 +132,8 @@ friends.push(randomAnimal.name);
 // 7. [ ] `console.log` `friends`.
 console.log(friends, 'friends line 129')
 // 8. [ ] Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
-// animals[Math.floor(Math.random() * animals.length - 1)].friends = friends;
- animals[Math.floor(Math.random() * animals.length)].friends = friends;
+//here we add the friends array to a random animal
+animals[Math.floor(Math.random() * animals.length)].friends = friends;
 
 // 9. [ ] `console.log` your work.
 console.log(animals, 'line 133')
