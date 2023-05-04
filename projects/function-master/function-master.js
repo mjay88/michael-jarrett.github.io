@@ -14,7 +14,6 @@ function objectValues(object) {
 function keysToString(object) {
   //use object.keys to get an array of object keys
   //use array.join to generate a string of those keys
-
   let string = Object.keys(object).join(" ");
   return string;
 }

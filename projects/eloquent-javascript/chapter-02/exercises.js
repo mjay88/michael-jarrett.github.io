@@ -64,27 +64,26 @@ function fizzBuzz() {
 // ////////////////////////////////////////////////////////////////////////////////
 // Write a program that creates a string that represents an 8×8 grid, using newline characters to separate lines. At each position of the grid there is either a space or a "#" character. The characters should form a chessboard.
 function drawChessboard(input) {
-  let pointer1 = 0;
-  let pointer2 = "";
-  for (let x = 0; x < input; x++) {
+//create empty string variable
+let string = "";
 
-    for (let y = 0; y < input - 1; y++) {
-     pointer1++;
-     
-     console.log(pointer1);
-     console.log(pointer2);
+//create nested loop, every time the outer loop increments, we add our new line character, every increment is a new row
+for(let i = 0; i < input; i++){
+  //inner loop is for characters of row, if our current iteration on outer loop plus
+    //current count of inner loop variable equals an even number, it should be a space,
+      //otherwise, it should be a #
+      for(let j = 0; j < input; j++){
+        console.log(`x=${x}, y=${y}`)
+        if((i + j) % 2 === 0){
+          string += " ";
+        }else {
+          string += "#"
+        }
+      }
 
-     if(pointer1 > 6){
-      pointer1 = 0;
-      pointer2 += "\n"
-     }else {
-      pointer2 += " #";
-     }
-
-    }
-  }
-
-  //outer loop handles the lines
+  string += "\n"
+}
+console.log(string);
 }
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
