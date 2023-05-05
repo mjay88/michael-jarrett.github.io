@@ -1,7 +1,7 @@
 /**
  * 
  * variables:
- * 0. In computer programming, we are usually working with data. Whether it's users, products, scores, enemies in a video game, or a paragraph of text, we are typically doing something with something. In JavaScript, we use VARIABLES to store this information. You can think of a variable as a 'labeled container' for data or stuff that we are working with.
+ *In computer programming, we are usually working with data. Whether it's users, products, scores, enemies in a video game, or a paragraph of text, we are typically doing something with something. In JavaScript, we use VARIABLES to store this information. You can think of a variable as a 'labeled container' for data or stuff that we are working with.
  * 
  * 
  * Clear explanation for each concept
