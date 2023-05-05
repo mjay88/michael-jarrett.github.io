@@ -23,8 +23,6 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-  //console.log(object)
-  //reference above
   //use object.values to get array of values
   let arrayOfValues = Object.values(object);
   //check which values are strings, use filter to get rid of other elements
@@ -55,6 +53,7 @@ function arrayOrObject(collection) {
 function capitalizeWord(string) {
   //only capitalize the first letter
   //access string at index 0, upperCase index, add to rest of string using slice method
+  //the slice method returns the entire string starting at the '1' index.
   return string[0].toUpperCase() + string.slice(1);
 }
 
@@ -67,6 +66,7 @@ function capitalizeAllWords(string) {
   //console.log(string);
   //convert string to array of words
   //use map to iterate, then use capitalizeWord on each element then convert array back to string, one liner baby.
+  //map takes in a iterable and a call back function and returns a copy of the iterable with the callback function called on each element.
   return string
     .split(" ")
     .map((el) => capitalizeWord(el))
@@ -88,6 +88,7 @@ function welcomeMessage(object) {
 
 function profileInfo(object) {
   //use string interpolation to return a value in a string
+  //string interpolation allows us to excute functions directly inside of our string.
   return `${capitalizeWord(object.name)} is a ${capitalizeWord(
     object.species
   )}`;
@@ -98,17 +99,8 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-  //   //check if noises exists...
-  //     if(object.noises === null || object.noises === undefined) return ;
-
-  //     console.log(object.noises.length)
-  //     //if noises exists and its length is greater than 0
-  //     if(object.noises.length > 0){
-  //         return
-  //     } else {
-  //         return 'there are no noises';
-  //     }
-
+  //check if noises exists, if it is undefined, or if it is and empty array, validation
+  //if falsy return message, if truthy, return noises array as string using join method
   return object.noises === null ||
     object.noises === undefined ||
     object.noises.length <= 0
@@ -119,14 +111,11 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//3 solutioins
 function hasWord(string, word) {
   //convert string into set...so we can use sets .has property
-
   //     let wordSet = new Set(string.split(" "));
-
-  //     console.log(wordSet);
-  //     console.log(wordSet.has(word))
+  //
   // return wordSet.has(word);
 
   // let filteredArray = string.split(' ').filter(el => el === word);
@@ -134,6 +123,18 @@ function hasWord(string, word) {
 
   //  return filteredArray.length === 1 ? true : false;
   return string.split(" ").includes(word);
+
+  //recursive solution
+
+  //convert string into array
+
+  //basecase, if word equals current element of array
+  //return true
+
+  //othercase if array.length === 0 return false
+
+  //recursive case
+  //function call with word slicing of element that we just checked
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -175,31 +176,20 @@ function isFriend(name, object) {
 //e :
 //.some .includes
 function nonFriends(name, array) {
-  console.log(name, array);
-  //convert array to object
-  //assign nonFriends variable to empty array
-  //iterate through object
-  //if current element.name does not equal name and current element .name is not included in friends array
-  //push into non frineds array
-  //get/create friends array
   //filter array against given name to get given name obj
   let user = array.filter((el) => el.name === name);
-  console.log(user);
   //assign friends array to filtered array
   let friends = user[0].friends;
-  console.log(friends);
   //create not friends array
   let notFriends = [];
   //iterate through given array
   for (let el of array) {
-    //if current element is not the name passed as an arguement does not exist in friends array
+    //if current element is not the name passed as an arguement and it does not exist in friends array
     if (!friends.includes(el.name) && el.name !== name) {
-      console.log(el.name, "we need to add this name to a not friends array");
       //push into notFriends array
       notFriends.push(el.name);
     }
   }
-  console.log(notFriends, "notFriends");
   //return notFriends array
   return notFriends;
 }
@@ -209,15 +199,15 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-  // console.log(object, 'object before')
-  // console.log(object.hasOwnProperty(key))
+  //use hasOwnProperty method to check if key exists
   if (object.hasOwnProperty(key)) {
-    // console.log(object[key], `this is the property you need to update with ${value}`)
+//if it does exist, reassign it value passed as arguement
     object[key] = value;
+  //if it does not exist (hasOwnProperty return boolean)
   } else {
+    //create the key and assign it value
     object[key] = value;
   }
-  // console.log(object, 'object after')
   return object;
 }
 
@@ -226,9 +216,11 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-  // console.log(object, array)
+  //iterate through array
   for (let el of array) {
+     //use hasOwnProperty method to check if current element exists as a property in object
     if (object.hasOwnProperty(el)) {
+      //if we find it, delete it
       delete object[el];
     }
   }
@@ -239,6 +231,7 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
+  //Set is a JavaScript object that only contains unique values, this does all the iterating an removing for us.
   return [...new Set(array)];
 }
 
