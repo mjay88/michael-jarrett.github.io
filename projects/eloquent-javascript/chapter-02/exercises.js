@@ -68,13 +68,13 @@ function drawChessboard(input) {
 let string = "";
 
 //create nested loop, every time the outer loop increments, we add our new line character, every increment is a new row
-for(let i = 0; i < input; i++){
+for(let x = 0; x < input; x++){
   //inner loop is for characters of row, if our current iteration on outer loop plus
     //current count of inner loop variable equals an even number, it should be a space,
       //otherwise, it should be a #
-      for(let j = 0; j < input; j++){
-        console.log(`x=${x}, y=${y}`)
-        if((i + j) % 2 === 0){
+      for(let y = 0; y < input; y++){
+        // console.log(`x=${x}, y=${y}`)
+        if((x + y) % 2 === 0){
           string += " ";
         }else {
           string += "#"
@@ -84,7 +84,7 @@ for(let i = 0; i < input; i++){
   string += "\n"
 }
 console.log(string);
-
+return string;
 
 
 }
