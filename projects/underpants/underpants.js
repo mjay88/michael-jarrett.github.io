@@ -329,18 +329,18 @@ _.reject = function (array, cb) {
 _.partition = function (array, cb) {
   //create return array, which is an array with two empty arrays as element
   let result = [[], []];
-  //iterate through array 
-  
-  for(let i = 0; i < array.length; i++){
+  //iterate through array
+
+  for (let i = 0; i < array.length; i++) {
     if (cb(array[i], i, array) === true) {
       //it result of cb is true, push array into appropriate result array
       result[0].push(array[i]);
       //otherwise, push result into alternative result array
     } else {
-      result[1].push(array[i])
+      result[1].push(array[i]);
     }
   }
-  console.log(result, 'partition result')
+  console.log(result, "partition result");
   return result;
 };
 /** _.map
@@ -367,17 +367,17 @@ _.map = function (collection, func) {
     //if it is an array, iterate through the array
     for (let i = 0; i < collection.length; i++) {
       //call the callback function passing the element, the index, and the entire collection,  and push it into result array
-      result.push(func(collection[i], i, collection))
+      result.push(func(collection[i], i, collection));
     }
     //if our collection is not an array, assume it is an object
   } else {
     //iterate through the collection
     for (let key in collection) {
       //call the callback function on the each elements property value, key, and the entire collection, and push it into result array
-      result.push(func(collection[key], key, collection))
+      result.push(func(collection[key], key, collection));
     }
   }
-  console.log(result, 'map')
+  console.log(result, "map");
   return result;
 };
 
@@ -393,23 +393,22 @@ _.map = function (collection, func) {
  */
 //create function, takes in an array of objects and a property
 
-_.pluck = function(array, prop){
+_.pluck = function (array, prop) {
   //create return array
-let result = [];
+  let result = [];
 
   //iterate through array of objects
 
-for(let i = 0; i < array.length; i++){
-  result.push(array[i][prop])
-}
-// let result = _.map((el, i, array) => {
-//   return el[prop] === prop;
-// })
+  for (let i = 0; i < array.length; i++) {
+    result.push(array[i][prop]);
+  }
+  // let result = _.map((el, i, array) => {
+  //   return el[prop] === prop;
+  // })
 
-console.log(result, 'pluck result')
-return result;
-}
-
+  console.log(result, "pluck result");
+  return result;
+};
 
 /** _.every
  * Arguments:
@@ -432,61 +431,69 @@ return result;
  *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
  */
 //create function, takes in an collection
-_.every = function(collection, cb){
+_.every = function (collection, cb) {
   // console.log(collection, 'every')
   //if cb is not a function
-  
-//check if collection is an array
-if(Array.isArray(collection)){
-  //if it is an array, iterate through array
-  //call function for every element of collection with the current element, its index, and the entire collection
-  for(let i = 0; i < collection.length; i++){
-    //if the cb is not a function
-    if(typeof cb !== 'function'){
-      //if any element returns falsy
-      if(collection[i] === false || i === false || collection === false || collection[i].length === 0){
+
+  //check if collection is an array
+  if (Array.isArray(collection)) {
+    //if it is an array, iterate through array
+    //call function for every element of collection with the current element, its index, and the entire collection
+    for (let i = 0; i < collection.length; i++) {
+      //if the cb is not a function
+      if (typeof cb !== "function") {
+        //if any element returns falsy
+        if (
+          collection[i] === false ||
+          i === false ||
+          collection === false ||
+          collection[i].length === 0
+        ) {
+          //return false
+          return false;
+          //else return true
+        } else {
+          return true;
+        }
+      }
+      //if calling the callback on anything in the array ever results in false
+      if (cb(collection[i], i, collection) === false) {
         //return false
         return false;
-        //else return true
-      } else {
-        return true;
       }
     }
-    //if calling the callback on anything in the array ever results in false
-    if(cb(collection[i], i, collection) === false){
-      //return false
-      return false;
+    //if we iterate through the entire loop and make it to the end without ever returning false, return true
+    return true;
+    //if the collection is an object
+  } else {
+    //iterate through the object
+    for (let key in collection) {
+      //if the cb is not a function
+      if (typeof cb !== "function") {
+        //if the curret value returns falsey
+        if (
+          collection[key] === false ||
+          key === false ||
+          collection === false ||
+          collection[key].length === 0
+        ) {
+          //return false
+          return false;
+        } else {
+          //if we iterate through entire collection without an element returning false, return true
+          return true;
+        }
+      }
+      //if calling the callback on anything in the object ever results in false
+      if (cb(collection[key], key, collection === false)) {
+        //return false
+        return false;
+      }
     }
+    //if we make it through the entire collection without ever returning false, return true
+    return true;
   }
-  //if we iterate through the entire loop and make it to the end without ever returning false, return true
-  return true;
-  //if the collection is an object
-} else {
-  //iterate through the object
-  for(let key in collection){
-    //if the cb is not a function
-    if(typeof cb !== 'function'){
-     //if the curret value returns falsey
-     if(collection[key] === false || key === false || collection === false || collection[key].length === 0){
-      //return false
-      return false
-     } else {
-      //if we iterate through entire collection without an element returning false, return true
-      return true;
-     }
-    }
-    //if calling the callback on anything in the object ever results in false
-    if(cb(collection[key], key, collection === false)){
-       //return false
-       return false;
-    }
-    
-  }
-  //if we make it through the entire collection without ever returning false, return true
-  return true;
-}
-
-}
+};
 
 /** _.some
  * Arguments:
@@ -509,62 +516,69 @@ if(Array.isArray(collection)){
  *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
  */
 
-_.some = function(collection, cb){
-  console.log(collection, 'some')
+_.some = function (collection, cb) {
+  console.log(collection, "some");
   //if cb is not a function
-  
-//check if collection is an array
-if(Array.isArray(collection)){
-  //if it is an array, iterate through array
-  //call function for every element of collection with the current element, its index, and the entire collection
-  for(let i = 0; i < collection.length; i++){
-    //if the cb is not a function
-    if(typeof cb !== 'function'){
-      //if any element returns falsy
-      if(collection[i] === false || i === false || collection === false || collection[i].length === 0){
+
+  //check if collection is an array
+  if (Array.isArray(collection)) {
+    //if it is an array, iterate through array
+    //call function for every element of collection with the current element, its index, and the entire collection
+    for (let i = 0; i < collection.length; i++) {
+      //if the cb is not a function
+      if (typeof cb !== "function") {
+        //if any element returns falsy
+        if (
+          collection[i] === false ||
+          i === false ||
+          collection === false ||
+          collection[i].length === 0
+        ) {
+          //return false
+          return false;
+          //else return true
+        } else {
+          return true;
+        }
+      }
+      //if calling the callback on anything in the array ever results in false
+      if (cb(collection[i], i, collection) === true) {
         //return false
-        return false;
-        //else return true
-      } else {
         return true;
       }
     }
-    //if calling the callback on anything in the array ever results in false
-    if(cb(collection[i], i, collection) === true){
-      //return false
-      return true;
+    //if we iterate through the entire loop and make it to the end without ever returning false, return true
+    return false;
+    //if the collection is an object
+  } else {
+    //iterate through the object
+    for (let key in collection) {
+      //if the cb is not a function
+      if (typeof cb !== "function") {
+        //if the curret value returns falsey
+        if (
+          collection[key] === false ||
+          key === false ||
+          collection === false ||
+          collection[key].length === 0
+        ) {
+          //return false
+          return false;
+        } else {
+          //if we iterate through entire collection without an element returning false, return true
+          return false;
+        }
+      }
+      //if calling the callback on anything in the object ever results in false
+      if (cb(collection[key], key, collection === true)) {
+        //return false
+        return false;
+      }
     }
+    //if we make it through the entire collection without ever returning false, return true
+    return true;
   }
-  //if we iterate through the entire loop and make it to the end without ever returning false, return true
-  return false;
-  //if the collection is an object
-} else {
-  //iterate through the object
-  for(let key in collection){
-    //if the cb is not a function
-    if(typeof cb !== 'function'){
-     //if the curret value returns falsey
-     if(collection[key] === false || key === false || collection === false || collection[key].length === 0){
-      //return false
-      return false
-     } else {
-      //if we iterate through entire collection without an element returning false, return true
-      return false;
-     }
-    }
-    //if calling the callback on anything in the object ever results in false
-    if(cb(collection[key], key, collection === true)){
-       //return false
-       return false;
-    }
-    
-  }
-  //if we make it through the entire collection without ever returning false, return true
-  return true;
-}
-
-}
-
+};
 
 /** _.reduce
  * Arguments:
@@ -585,19 +599,30 @@ if(Array.isArray(collection)){
  *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
  */
 //create function, accepts an array, a callback, and a seed
-_.reduce = function(array, cb, seed){
-//if no seed was given, use first value of collection as seed
-  let accumulator = seed === undefined ?  0 : seed;
-  //iterate through array
-  for(let i = 0; i < array.length; i++){
-  //call callback function with accuumulator, current element, index, and array
-  accumulator = cb(accumulator, array[i], i, array);
-   
+_.reduce = function (array, cb, seed) {
+  let previousResult;
+  //if no seed
+  if (seed === undefined) {
+    //use the first element of array as seed,
+    previousResult = array[0];
+    //and start loop with the next element
+    for (let i = 1; i < array.length; i++) {
+      //call callback function for every element in array passing previousResult, current element, index, and entire array
+      previousResult = cb(previousResult, array[i], i, array);
+    }
+    //otherwise, if seed does exist
+  } else {
+    //set previousResult to seed value
+    previousResult = seed;
+    //iterate through entire array
+    for (let i = 0; i < array.length; i++) {
+      //call callback function for every element in array passing previousResult, current element, index, and entire array
+      previousResult = cb(previousResult, array[i], i, array);
+    }
   }
- return accumulator;
-
-
-}
+  //once either loop has ended, return previous result
+  return previousResult;
+};
 
 /** _.extend
  * Arguments:
@@ -613,12 +638,11 @@ _.reduce = function(array, cb, seed){
  *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
  *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
  */
-_.extend = function(object, ...args){
-  
-   Object.assign(object, ...args);  
+_.extend = function (object, ...args) {
+  Object.assign(object, ...args);
   return object;
   // console.log(arguments, 'extend')
-}
+};
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
