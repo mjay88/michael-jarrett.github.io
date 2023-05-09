@@ -167,10 +167,13 @@ _.indexOf = function (array, value) {
  *   _.contains([1,"two", 3.14], "two") -> true
  */
 _.contains = function (array, value) {
-   //if value doesn't equal undefined and value exists in array, return true, if indefined return undefined, otherwise false
-    return array.includes(value) && value !== undefined ? true : value === undefined ? undefined : false;
+  //if value doesn't equal undefined and value exists in array, return true, if indefined return undefined, otherwise false
+  return array.includes(value) && value !== undefined
+    ? true
+    : value === undefined
+    ? undefined
+    : false;
 };
-
 
 /** _.each
  * Arguments:
@@ -215,25 +218,35 @@ _.each = function (collection, func) {
  *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
  */
 //funciton exists, accepts an array as its arguement
- _.unique = function(array){
-//create return array
-  let uniqueArray = []
-    //need to use nested loop or equavilant with indexOf?
-    //slice off first index of array
-    console.log(array)
-     for(let i = 0; i < array.length; i++){
-        //
-      if(array.indexOf(array[i]) === -1){
-        //
-        uniqueArray.push(array[i]);
-      } else {
-        array.splice()
-      }
-     }
-     console.log(uniqueArray);
+_.unique = function (array) {
+  //create return array
+  console.log(array, "og array");
+  let uniqueArray = [];
+  //iterate through array with for loop
 
-    //return [... new Set(array)];
- }
+  for (let i = 0; i < array.length; i++) {
+    //check if value exists in uniqueArray already,
+    if (uniqueArray.indexOf(array[i]) === -1) {
+      //if it doesn't push current element into unqique array
+      uniqueArray.push(array[i]);
+    }
+  }
+  console.log(uniqueArray, "unqiuearray");
+  return uniqueArray;
+  //this fucking works
+  // for(let i = 0; i < array.length; i++){
+
+  //   console.log(array[i], array.slice(i + 1));
+  //   //take the current element and compare it to the rest of the array starting at the current elements index, if indexOf return -1,
+  //   if(array.slice(i + 1).indexOf(array[i]) === -1){
+  //     //
+  //  uniqueArray.push(array[i])
+  //   }
+  // }
+  // console.log(uniqueArray.sort, 'uniqueArray')
+  //
+  //return [... new Set(array)];
+};
 
 /** _.filter
  * Arguments:
@@ -250,7 +263,21 @@ _.each = function (collection, func) {
  * Extra Credit:
  *   use _.each in your implementation
  */
-
+//create function, it should take in an array and a callback function
+_.filter = function (array, cb) {
+  //create return array
+  let result = [];
+  //iterate through array
+  for (let i = 0; i < array.length; i++) {
+    //and call cb on each element of array, index, and the array
+    if (cb(array[i], i, array) === true) {
+      //it result of cb is true, push array into result array
+      result.push(array[i]);
+    }
+  }
+  //return new array
+  return result;
+};
 /** _.reject
  * Arguments:
  *   1) An array
@@ -263,6 +290,22 @@ _.each = function (collection, func) {
  * Examples:
  *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
  */
+
+//create function, it should take in an array and a callback function
+_.reject = function (array, cb) {
+  //create return array
+  let result = [];
+  //iterate through array
+  for (let i = 0; i < array.length; i++) {
+    //and call cb on each element of array, index, and the array
+    if (cb(array[i], i, array) === false) {
+      //it result of cb is false, push array into result array
+      result.push(array[i]);
+    }
+  }
+  //return new array
+  return result;
+};
 
 /** _.partition
 * Arguments:
@@ -282,7 +325,24 @@ _.each = function (collection, func) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+//create function, it should take an array and a cb function
+_.partition = function (array, cb) {
+  //create return array, which is an array with two empty arrays as element
+  let result = [[], []];
+  //iterate through array 
+  
+  for(let i = 0; i < array.length; i++){
+    if (cb(array[i], i, array) === true) {
+      //it result of cb is true, push array into appropriate result array
+      result[0].push(array[i]);
+      //otherwise, push result into alternative result array
+    } else {
+      result[1].push(array[i])
+    }
+  }
+  console.log(result, 'partition result')
+  return result;
+};
 /** _.map
  * Arguments:
  *   1) A collection
@@ -299,6 +359,28 @@ _.each = function (collection, func) {
  *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
  */
 
+//create function, it should take in an array and a callback function
+_.map = function (collection, func) {
+  let result = [];
+  //check if the collection is an array
+  if (Array.isArray(collection)) {
+    //if it is an array, iterate through the array
+    for (let i = 0; i < collection.length; i++) {
+      //call the callback function passing the element, the index, and the entire collection,  and push it into result array
+      result.push(func(collection[i], i, collection))
+    }
+    //if our collection is not an array, assume it is an object
+  } else {
+    //iterate through the collection
+    for (let key in collection) {
+      //call the callback function on the each elements property value, key, and the entire collection, and push it into result array
+      result.push(func(collection[key], key, collection))
+    }
+  }
+  console.log(result, 'map')
+  return result;
+};
+
 /** _.pluck
  * Arguments:
  *   1) An array of objects
@@ -309,6 +391,25 @@ _.each = function (collection, func) {
  * Examples:
  *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
  */
+//create function, takes in an array of objects and a property
+
+_.pluck = function(array, prop){
+  //create return array
+let result = [];
+
+  //iterate through array of objects
+
+for(let i = 0; i < array.length; i++){
+  result.push(array[i][prop])
+}
+// let result = _.map((el, i, array) => {
+//   return el[prop] === prop;
+// })
+
+console.log(result, 'pluck result')
+return result;
+}
+
 
 /** _.every
  * Arguments:
@@ -330,6 +431,62 @@ _.each = function (collection, func) {
  *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
  *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
  */
+//create function, takes in an collection
+_.every = function(collection, cb){
+  console.log(collection, 'every')
+  //if cb is not a function
+  
+//check if collection is an array
+if(Array.isArray(collection)){
+  //if it is an array, iterate through array
+  //call function for every element of collection with the current element, its index, and the entire collection
+  for(let i = 0; i < collection.length; i++){
+    //if the cb is not a function
+    if(typeof cb !== 'function'){
+      //if any element returns falsy
+      if(collection[i] === false || i === false || collection === false || collection[i].length === 0){
+        //return false
+        return false;
+        //else return true
+      } else {
+        return true;
+      }
+    }
+    //if calling the callback on anything in the array ever results in false
+    if(cb(collection[i], i, collection) === false){
+      //return false
+      return false;
+    }
+  }
+  //if we iterate through the entire loop and make it to the end without ever returning false, return true
+  return true;
+  //if the collection is an object
+} else {
+  //iterate through the object
+  for(let key in collection){
+    //if the cb is not a function
+    if(typeof cb !== 'function'){
+     //if the curret value returns falsey
+     if(collection[key] === false || key === false || collection === false || collection[key].length === 0){
+      //return false
+      return false
+     } else {
+      //if we iterate through entire collection without an element returning false, return true
+      return true;
+     }
+    }
+    //if calling the callback on anything in the object ever results in false
+    if(cb(collection[key], key, collection === false)){
+       //return false
+       return false;
+    }
+    
+  }
+  //if we make it through the entire collection without ever returning false, return true
+  return true;
+}
+
+}
 
 /** _.some
  * Arguments:
