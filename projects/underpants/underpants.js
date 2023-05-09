@@ -433,7 +433,7 @@ return result;
  */
 //create function, takes in an collection
 _.every = function(collection, cb){
-  console.log(collection, 'every')
+  // console.log(collection, 'every')
   //if cb is not a function
   
 //check if collection is an array
@@ -508,6 +508,63 @@ if(Array.isArray(collection)){
  *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
  *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
  */
+
+_.some = function(collection, cb){
+  console.log(collection, 'some')
+  //if cb is not a function
+  
+//check if collection is an array
+if(Array.isArray(collection)){
+  //if it is an array, iterate through array
+  //call function for every element of collection with the current element, its index, and the entire collection
+  for(let i = 0; i < collection.length; i++){
+    //if the cb is not a function
+    if(typeof cb !== 'function'){
+      //if any element returns falsy
+      if(collection[i] === false || i === false || collection === false || collection[i].length === 0){
+        //return false
+        return false;
+        //else return true
+      } else {
+        return true;
+      }
+    }
+    //if calling the callback on anything in the array ever results in false
+    if(cb(collection[i], i, collection) === true){
+      //return false
+      return true;
+    }
+  }
+  //if we iterate through the entire loop and make it to the end without ever returning false, return true
+  return false;
+  //if the collection is an object
+} else {
+  //iterate through the object
+  for(let key in collection){
+    //if the cb is not a function
+    if(typeof cb !== 'function'){
+     //if the curret value returns falsey
+     if(collection[key] === false || key === false || collection === false || collection[key].length === 0){
+      //return false
+      return false
+     } else {
+      //if we iterate through entire collection without an element returning false, return true
+      return false;
+     }
+    }
+    //if calling the callback on anything in the object ever results in false
+    if(cb(collection[key], key, collection === true)){
+       //return false
+       return false;
+    }
+    
+  }
+  //if we make it through the entire collection without ever returning false, return true
+  return true;
+}
+
+}
+
 
 /** _.reduce
  * Arguments:
