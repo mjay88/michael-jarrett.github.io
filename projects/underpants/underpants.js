@@ -584,6 +584,30 @@ if(Array.isArray(collection)){
  * Examples:
  *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
  */
+//create function, accepts an array, a callback, and a seed
+_.reduce = function(array, cb, seed){
+//iterate through array
+for(let i = 0; i < array.length; i++){
+  //call function for every elment in collection pass previousresult, element index
+//if the very first iteration, 
+if(i === 0){
+  if(seed === undefined || seed === null){
+  //if no seed was passed, passed the cb the first element as the seed, the element, and the index
+  cb(array[0], array[i], i, array)
+
+  }
+  //if i == 0, use seed as the previous result, and pass element and index as well
+  cb(seed, array[i], i)
+  
+}
+return cb(cb(seed, array[i], i), array[i], i, array)
+
+  
+}
+
+return cb(seed, array[i], i, array);
+
+}
 
 /** _.extend
  * Arguments:
@@ -599,7 +623,12 @@ if(Array.isArray(collection)){
  *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
  *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
  */
-
+_.extend = function(object, ...args){
+  
+   Object.assign(object, ...args);  
+  return object;
+  // console.log(arguments, 'extend')
+}
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
