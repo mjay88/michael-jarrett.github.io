@@ -1,24 +1,307 @@
-'use strict';
+"use strict";
 
 // YOU KNOW WHAT TO DO //
 
 /**
- * each: Designed to loop over a collection, Array or Object, and applies the 
+ * identity: Designed to take in any value and return that value, unchanged
+ *
+ *
+ * @param any value: string, number, boolean, function, array, object ect...
+ *
+ */
+function identity(value) {
+  return value;
+}
+module.exports.identity = identity;
+
+/**
+ * typeOf: Designed to take in any value and return the JavaScript type of that value as a string
+ *
+ *
+ *
+ * @param any value: string, number, boolean, function, array, object ect...
+ *
+ */
+function typeOf(value) {
+  if (Array.isArray(value)) {
+    return "array";
+  } else if (value === null) {
+    return "null";
+  } else {
+    return typeof value;
+  }
+}
+module.exports.typeOf = typeOf;
+
+/**
+ * first: Designed to take in an array and a number and return the number of items starting at the beginning of the array
+ *
+ * @param {Array} array: The array over which to iterate.
+ * @param {Number} number: the number of items to return starting at the first element of the array
+ *
+ */
+
+function first(array, number) {
+  if (!Array.isArray(array)) return [];
+  if (array.length === 0 || number < 0) return [];
+  if (typeof number !== "number" || number === undefined || number === null)
+    return array[0];
+  if (number > array.length - 1) return array;
+  return array.slice(0, number);
+}
+module.exports.first = first;
+
+/**
+ * last: Designed to take in an array and a number and return the number of items starting at the last index of the array
+ *
+ * @param {Array} array: The array over which to iterate.
+ * @param {Number} number: the number of items to return starting at the last element of the array
+ */
+
+function last(array, number) {
+  if (!Array.isArray(array)) return [];
+  if (array.length === 0 || number < 0) return [];
+  if (typeof number !== "number" || number === undefined || number === null)
+    return array[array.length - 1];
+  return array.slice(number * -1);
+}
+module.exports.last = last;
+
+/**
+ * indexOf: Designed to take in an array and a target value and return the first occurance of the target value
+ *
+ *
+ * @param {Array} array: The collection over which to iterate.
+ * @param {Value} value: A target value to query its existance in the array
+ *
+ *
+ */
+function indexOf(array, value) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      return i;
+    }
+  }
+  return -1;
+}
+module.exports.indexOf = indexOf;
+
+/**
+ * contains: Designed to take in an array and a value, and return a boolean based upon the value exisiting in the array
+ *
+ * @param {Array} Array: The array over which to iterate.
+ * @param {Value} value: A target value to query its existance in the array
+ *
+ *
+ *
+ */
+function contains(array, value) {
+  return array.includes(value) && value !== undefined
+    ? true
+    : value === undefined
+    ? undefined
+    : false;
+}
+module.exports.contains = contains;
+
+/**
+ * each: Designed to loop over a collection, Array or Object, and applies the
  * action Function to each value in the collection.
- * 
+ *
  * @param {Array or Object} collection: The collection over which to iterate.
- * @param {Function} action: The Function to be applied to each value in the 
+ * @param {Function} action: The Function to be applied to each value in the
  * collection
  */
 function each(collection, action) {
-    if(Array.isArray(collection)) {
-        for(var i = 0; i < collection.length; i++) {
-            action(collection[i], i, collection);
-        }
-    } else {
-        for (var key in collection) {
-            action(collection[key], key, collection);
-        }
+  if (Array.isArray(collection)) {
+    for (var i = 0; i < collection.length; i++) {
+      action(collection[i], i, collection);
     }
+  } else {
+    for (var key in collection) {
+      action(collection[key], key, collection);
+    }
+  }
 }
 module.exports.each = each;
+
+/**
+ * unique: Designed to take in an array and return a new array with only unique values, i.e., all duplicates removed.
+ *
+ * @param {Array} array: The array over which to iterate and remove any duplicates, then save to a new a new array and return
+ *
+ */
+function unique(array) {
+  //create return array
+  console.log(array, "og array");
+  let uniqueArray = [];
+  //iterate through array with for loop
+
+  for (let i = 0; i < array.length; i++) {
+    //check if value exists in uniqueArray already,
+    if (uniqueArray.indexOf(array[i]) === -1) {
+      //if it doesn't push current element into unqique array
+      uniqueArray.push(array[i]);
+    }
+  }
+  console.log(uniqueArray, "unqiuearray");
+  return uniqueArray;
+}
+module.exports.unique = unique;
+
+/**
+ * filter: Designed to take in an array and a callback function, and return a new array with only the elements that pass a conditional test outlined in the callback function
+ *
+ * @param {Array} array: The array over which to iterate and call the callBack on every element, then save to a new array based on result of callBack and return
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the array, only returning the elements that return true
+ */
+function filter(array, cb) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    if (cb(array[i], i, array) === true) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+}
+module.exports.filter = filter;
+
+/**
+ * reject: Designed to take in an array and a callback function, and return a new array with only the elements that don't pass a conditional test outlined in the callback function
+ *
+ * @param {Array} array: The array over which to iterate and call the callBack on every element, then save to a new array based on result of callBack and return
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the array, only returning the elements that return false
+ */
+function reject(array, cb) {
+  //create return array
+  let result = [];
+  //iterate through array
+  for (let i = 0; i < array.length; i++) {
+    //and call cb on each element of array, index, and the array
+    if (cb(array[i], i, array) === false) {
+      //it result of cb is false, push array into result array
+      result.push(array[i]);
+    }
+  }
+  //return new array
+  return result;
+}
+module.exports.reject = reject;
+
+/**
+ * partition: Designed to take in an array and a callback function, and return a new array with two seperate arrays inside, one containing the elements that pass a conditional test outlined in the callback function, and the other containing the elements that don't pass the test
+ *
+ * @param {Array} array: The array over which to iterate and call the callBack on every element, then save to a new array based on result of callBack and return
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the array, pushing the elements that return true into the first array and pushing the elements that return false into the second array
+ */
+function partition(array, cb) {
+  //create return array, which is an array with two empty arrays as element
+  let result = [[], []];
+  //iterate through array
+
+  for (let i = 0; i < array.length; i++) {
+    if (cb(array[i], i, array) === true) {
+      //it result of cb is true, push array into appropriate result array
+      result[0].push(array[i]);
+      //otherwise, push result into alternative result array
+    } else {
+      result[1].push(array[i]);
+    }
+  }
+  console.log(result, "partition result");
+  return result;
+}
+module.exports.partition = partition;
+
+/**
+ * map: Designed to take in a collection and a callback function, and return a new array containing the results of calling the callback function on every element
+ *
+ *  @param {Array or Object} collection: The collection over which to iterate and call the callBack on every element, then save to a new array with the results of calling the callback function on each element
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the collection, and pushing the results into a new array to return
+ */
+function map(collection, func) {
+  let result = [];
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++) {
+      result.push(func(collection[i], i, collection));
+    }
+  } else {
+    for (let key in collection) {
+      result.push(func(collection[key], key, collection));
+    }
+  }
+  return result;
+}
+module.exports.map = map;
+
+/**
+ * pluck: Designed to take in an array of objects and property, and return a new array containing all the value of the property for every element in the array
+ *
+ *  @param {Array} array: The array of object over which to iterate and pull out
+ *
+ * @param {Prop} : The property to use to retrieve the property value of every element
+ */
+
+function pluck(array, prop) {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    result.push(array[i][prop]);
+  }
+  return result;
+}
+
+module.exports.pluck = pluck;
+
+/**
+ * every: Designed to take in a collection, either an object or array, and a callback function and return true if the value of calling the callBack function on every element returns true, and false if calling the callBack returns false and any element
+ *
+ *  @param {Array or Object} collection: The collection over which to iterate and call the callBack function on every element
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the array
+ */
+function every(collection, cb) {
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++) {
+      if (typeof cb !== "function") {
+        if (
+          collection[i] === false ||
+          i === false ||
+          collection === false ||
+          collection[i].length === 0
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      if (cb(collection[i], i, collection) === false) {
+        return false;
+      }
+    }
+    return true;
+  } else {
+    for (let key in collection) {
+      if (typeof cb !== "function") {
+        if (
+          collection[key] === false ||
+          key === false ||
+          collection === false ||
+          collection[key].length === 0
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      if (cb(collection[key], key, collection === false)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+module.exports.every = every;
