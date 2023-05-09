@@ -586,26 +586,16 @@ if(Array.isArray(collection)){
  */
 //create function, accepts an array, a callback, and a seed
 _.reduce = function(array, cb, seed){
-//iterate through array
-for(let i = 0; i < array.length; i++){
-  //call function for every elment in collection pass previousresult, element index
-//if the very first iteration, 
-if(i === 0){
-  if(seed === undefined || seed === null){
-  //if no seed was passed, passed the cb the first element as the seed, the element, and the index
-  cb(array[0], array[i], i, array)
-
+//if no seed was given, use first value of collection as seed
+  let accumulator = seed === undefined ?  0 : seed;
+  //iterate through array
+  for(let i = 0; i < array.length; i++){
+  //call callback function with accuumulator, current element, index, and array
+  accumulator = cb(accumulator, array[i], i, array);
+   
   }
-  //if i == 0, use seed as the previous result, and pass element and index as well
-  cb(seed, array[i], i)
-  
-}
-return cb(cb(seed, array[i], i), array[i], i, array)
+ return accumulator;
 
-  
-}
-
-return cb(seed, array[i], i, array);
 
 }
 
