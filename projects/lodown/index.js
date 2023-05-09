@@ -305,3 +305,112 @@ function every(collection, cb) {
   }
 }
 module.exports.every = every;
+
+/**
+ * some: Designed to take in a collection, either an object or array, and a callback function and return true if the value of calling the callBack function on one element returns true, and false if calling the callBack returns false for all elements
+ *
+ *  @param {Array or Object} collection: The collection over which to iterate and call the callBack function on every element
+ *
+ * @param {callBack} : The callBack function which to apply to every element in the array
+ */
+function some(collection, cb) {
+  console.log(collection, "some");
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++) {
+      if (typeof cb !== "function") {
+        if (
+          collection[i] === false ||
+          i === false ||
+          collection === false ||
+          collection[i].length === 0
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      if (cb(collection[i], i, collection) === true) {
+        return true;
+      }
+    }
+    return false;
+  } else {
+    for (let key in collection) {
+      if (typeof cb !== "function") {
+        if (
+          collection[key] === false ||
+          key === false ||
+          collection === false ||
+          collection[key].length === 0
+        ) {
+          return false;
+        } else {
+          return false;
+        }
+      }
+      if (cb(collection[key], key, collection === true)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+module.exports.some = some;
+
+
+
+/**
+ * reduce: Designed to take in an array, a callback function, and a seed or initial value, and return a single value based on calling the callback function on every element of the array
+ *
+ *  @param {Array} collection: The array over which to iterate and call the callBack function on every element
+ *
+ * @param {Function} : The callBack function which to apply to every element, index, and the array
+ * 
+ *  @param {Seed} : The initial value which to add the result of calling the callback function on every element
+ */
+function reduce(array, cb, seed) {
+    let previousResult;
+    if (seed === undefined) {
+      previousResult = array[0];
+      for (let i = 1; i < array.length; i++) {
+        previousResult = cb(previousResult, array[i], i, array);
+      }
+    } else {
+      previousResult = seed;
+      for (let i = 0; i < array.length; i++) {
+        previousResult = cb(previousResult, array[i], i, array);
+      }
+    }
+    return previousResult;
+  };
+  module.exports.reduce = reduce;
+
+
+/**
+ * extend: Designed to take in multiple objects as arguements, potentially n number of objects
+ * 
+ * @param {Object} object: initial object which to copy the properties of all the other arguements too
+ * 
+ * 
+ * @param {Multiple Object} objects: objects which to copy the properties of and return as a single object
+ *
+ * 
+ */
+
+
+function extend(object, ...args) {
+    Object.assign(object, ...args);
+    return object;
+  };
+
+module.exports.extend = extend;
+
+
+
+
+
+  
+  
+
+
+
