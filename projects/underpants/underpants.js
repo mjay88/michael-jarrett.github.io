@@ -638,6 +638,7 @@ _.reduce = function (array, cb, seed) {
  *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
  *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
  */
+
 _.extend = function (object, ...args) {
   Object.assign(object, ...args);
   return object;

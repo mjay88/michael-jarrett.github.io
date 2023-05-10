@@ -55,6 +55,19 @@ console.log(salutation); //Expected Output : Hello, and Welcome to Jello World
  //In JavaScript we can have code run or not run based on the value of these booleans. We will learn more about booleans later.
 
  //4. Array
+ //An array in JavaScript is an ordered collection or list. The ordered part is important.
+
+ //We can declare a variable as an array by creating a new array or with the array literal syntax
+
+ 
+
+ let arr1 = new Array()
+ let arr2 = [];
+
+ //Things inside of an array are ordered by there index, starting with 0; 
+
+ let animalsArray = 
+
 
 
  //5. Object
