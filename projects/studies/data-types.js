@@ -66,7 +66,37 @@ console.log(salutation); //Expected Output : Hello, and Welcome to Jello World
 
  //Things inside of an array are ordered by there index, starting with 0; 
 
- let animalsArray = 
+ let animalsArray = ['🐑', '🐕', '🐖', '🐘', '🐦'];
+//                    0     1   2    3   4
+
+//We can select a single element from an array by using 'bracket notation'
+let sheep = animalsArray[0]; //Expect result : '🐑'
+
+//We can also use bracket notation to replace animals and add new ones to our array
+animalsArray[0] = '🐐'; //Expect result : ['🐐', '🐕', '🐖', '🐘', '🐦']
+animalsArray[5] = '🐫';  //Expect result : ['🐐', '🐕', '🐖', '🐘', '🐦', '🐫']
+
+//Array's in JavaScript have built in methods, or functions specific to arrays, to help us do things with them
+
+//the .length method counts the elements in our array
+console.log(animalsArray.length) //Expected result : 6;
+// we can also us the .length array and special syntax to get the last element of the array
+console.log(animalsArray[animalsArray.length - 1]) //Expected result : '🐫'
+//or the shorter syntax 'at', 
+console.log(animalsArray.at(-1))  //Expected result: '🐫'
+
+//More array methods
+//adding and removing items to the beginning and end of our arrays is an extremely common task in when programming with JavaScript, as such, array's have built in methods to help us with this
+animalsArray = ['🐐', '🐕', '🐖', '🐘', '🐦', '🐫'];
+//push adds an element to the end of an array
+animalsArray.push('👻'); //Expected result :  ['🐐', '🐕', '🐖', '🐘', '🐦', '🐫', '👻']
+//pop removes an element from the end of our array and returns us that element
+animalsArray.pop(); //Expected result : '👻' and our animalsArray now looks like this : ['🐐', '🐕', '🐖', '🐘', '🐦', '🐫' ]
+
+//the shift method removes an item from the beginning of an array
+animalsArray.shift(); //Expected result : ['🐕', '🐖', '🐘', '🐦', '🐫'];
+//and the unshift method adds and item to the beginning of an array
+animalsArray.unshift('🐐'); //Expect result : ['🐐', '🐕', '🐖', '🐘', '🐦', '🐫']
 
 
 
