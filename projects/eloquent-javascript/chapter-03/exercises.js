@@ -1,45 +1,93 @@
 ////////////////////////////////////////////////////////////////////////////////
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function min() {
-
+//write a funcition that takes in two arguements and returns the smallest one
+//i: two numbers
+//o: the smallest of the two input numbers
+//c: none
+//e: what if numbers are the same value?
+function min(num1, num2) {
+  return num1 > num2 ? num2 : num1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+//define a recursive function to test whether a number is even or odd
+//i : an integer
+//o: a boolean
+//c : use recursion
+//e : what about negative numbers
+function isEven(num) {
+  //if num is 0 return true
+  if (num === 0) {
+    return true;
+  }
+  //if num is 1 return false
+  if (num === 1) {
+    return false;
+  }
 
-function isEven() {
+  //if number is negative, recursive call multiplying input by -1 to cconvert to even number
+  if (num < 0) {
+    return isEven(num * -1);
+  }
 
+  //recusive call modifying our number closer to 0 or 1
+  return isEven(num - 2);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+//takes in a string and a target character, returns the count of the target character
+//i: string, target
+//o: number
+//c: n/a
+//e: n/a
 
-function countChars() {
-
+function countChars(string, target) {
+  //create count variable
+  let count = 0;
+  //iterate through string
+  for (let i = 0; i < string.length; i++) {
+    //if current string index characeter is the same as our target
+    if (string[i] === target) {
+      //add to count
+      count++;
+    }
+  }
+  //return count
+  return count;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+//takes in a string, returns the number of Bs in string
+//i : takes in a string
+//o: the number of 'b's in the string
+//c: use countChars
+//e: casesensitivity?
+function countBs(string) {
+ 
+  string = string.toLowerCase();
 
-function countBs() {
-
+  return countChars(string, 'b');
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-if ((typeof process !== 'undefined') &&
-  (typeof process.versions.node !== 'undefined')) {
+if (
+  typeof process !== "undefined" &&
+  typeof process.versions.node !== "undefined"
+) {
   module.exports = {
     min,
     isEven,
     countBs,
     countChars,
   };
-};
+}
