@@ -228,13 +228,74 @@ console.log(3 * NaN) //Expected result : NaN
 //We get it as an output when we divide something by zero
 console.log(2 / 0) //Expected output : Infinity
 
-//Infinity is sometimes used to help define a variable on the first iteration of a loop :
+//Infinity is sometimes used to help define a variable before we know its range, like in this example from algo experts practice problems
+
+function findClosestValueInBst(tree, target) {
+   // Write your code here.
+ //create variable for difference, closest, and current
+   let current = tree;
+   //set best difference to Infinity, will not work if we set to zero
+   let bestDifference = Infinity;
+   let closest = null;
+ //while current exists
+   while(current !== null){
+ //if the difference of target and current nodes value is less than difference, 
+     
+     if(Math.abs(current.value - target) <= bestDifference){
+   //up date bestDifference
+       bestDifference = Math.abs(current.value - target);
+       console.log(bestDifference);
+   //set current value as closest
+       closest = current.value;
+       console.log(closest);
+     }    
+   //*edge case : if the difference is zero set as closest and return
+     if(current.value - target === 0){
+       return current.value;
+     }
+   //if the target is less than current, elmintate right side of tree
+     //binary part
+     if(target < current.value){
+       current = current.left;
+     } else {
+   //if the target is more than current, eliminate the right side of tree   
+       current = current.right;
+     }
+   }
+ 
+   return closest;
+   
+ }
+ 
+ // This is the class of the input tree. Do not edit.
+ class BST {
+   constructor(value) {
+     this.value = value;
+     this.left = null;
+     this.right = null;
+   }
+ }
+ 
+
+
 
 
 //-Infinity is essentially the same just going in the opposite direction away from 0;
 
 
 //11.Primitive vs Simple data types
+//In JavaScript, the data types described above can be broken down into two categories. Primitive types and Complex Data Types. The primitive types are : string, number, boolean, null, undefined, with NaN, Infinity, and -Infinity as sub types of the number type. Simple Data types, are objects and arrays, with arrays technically falling under the object category. These more complex data types differ from primitive data types in that they are capable of holding multiple values as properties. Objects can also hold functions as property values, which allows us them much more dynamic ways then primitives, though primitives do have built in methods modelled after object methods.
 
 
-//12. Copy by value vs copy by reference.
+
+
+//12. Copy by value vs copy by reference. 
+//Another important difference between Primitives data types and more complex data types is the concept of coppy by reference vs copy by value. Objects and array's copy there data by reference while primitives copy there data by value. 
+
+//Lets make a copy of a primitive first. 
+
+let message = "Hello World";
+let greeting = message;
+console.log(message) // Expected output : "Hello World"
+console.log(greeting) // Expected output : "Hello World"
+//Seems pretty straight forward right? We created greeting by assigning it to message, and by doing so we created two seperate variables, message and greeting. 
