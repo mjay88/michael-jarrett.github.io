@@ -73,8 +73,7 @@ let count = arr.length - 1;
 for(let i = 0; i <= arr.length - 1; i++){
 console.log(i, count)
 
-count--
-
+[arr[i], arr[arr[count - i]]] = [arr[arr[count - i]], arr[i]]
 }
 
 console.log(arr, 'reveresed')
