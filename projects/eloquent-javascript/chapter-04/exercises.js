@@ -65,18 +65,23 @@ return reversed;
 ////////////////////////////////////////////////////////////////////////////////
 //[1, 2 ,3 ,4 ,5]
 function reverseArrayInPlace(arr) {
-  console.log(arr, 'og')
+  // console.log(arr, 'og')
 //re assign indexes
 //count from 
-let count = arr.length - 1;
+let temp;
+for(let i = 0; i < Math.floor(arr.length/2); i++){
 
-for(let i = 0; i <= arr.length - 1; i++){
-console.log(i, count)
+  temp = arr[arr.length - 1 - i];
+  arr[arr.length - 1 - i] = arr[i];
+  arr[i] = temp
+  
 
-[arr[i], arr[arr[count - i]]] = [arr[arr[count - i]], arr[i]]
+//  [arr[i], arr[arr.length- 1 - i]] = [arr[arr.length-1-i] , arr[i]]
+// console.log(i, (arr.length - 1 - i))
+
 }
 
-console.log(arr, 'reveresed')
+// console.log(arr, 'reveresed')
 
 
 
@@ -86,7 +91,17 @@ console.log(arr, 'reveresed')
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {}
+function arrayToList(arr) {
+
+ let list = {};
+
+ for(let i = 0; i < arr.length; i++){
+   list = {value : arr[i], list}
+ }
+
+ console.log(list);
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
