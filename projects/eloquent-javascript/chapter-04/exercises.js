@@ -110,13 +110,13 @@ let list = null;
 ////////////////////////////////////////////////////////////////////////////////
 
 function listToArray(list) {
-console.log(list, 'list');
+// console.log(list, 'list');
 let array = []
 for(let node = list; node; node = node.rest){
 
 array.push(node.value)
 }
-console.log(array)
+// console.log(array)
 return array;
 
 
@@ -125,14 +125,36 @@ return array;
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+//takes an element and a list
+//creates a new list that adds the element to the front of the input list
+//
+function prepend(value, list) {
 
-function prepend() {}
+list = {value, rest : list}
+
+return list;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function nth() {}
+//takse a list and a number
+//return element at the given position in the list
+function nth(list, number) {
+  //if number less than zero return undefined
+  if(number < 0) return undefined;
+//iterate through list
+let element;
+console.log(list, number, 'params')
+for(let node = list; node; node = node.rest){
+console.log(`${node.value}`)
+if((node.value - 1) === number){
+  element = node;
+}
+}
+console.log(element, 'element saved')
+return element.value === undefined ? undefined : element.value;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
