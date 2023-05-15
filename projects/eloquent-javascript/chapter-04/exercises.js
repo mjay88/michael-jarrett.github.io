@@ -92,14 +92,16 @@ for(let i = 0; i < Math.floor(arr.length/2); i++){
 ////////////////////////////////////////////////////////////////////////////////
 
 function arrayToList(arr) {
+console.log(arr);
+//  let list = {value : arr.length - 1, rest : null};
+let list = null;
 
- let list = {};
-
- for(let i = 0; i < arr.length; i++){
-   list = {value : arr[i], list}
+ for(let i = arr.length - 1; i >= 0; i--){
+   list = {value : arr[i], rest : list}
  }
 
  console.log(list);
+ return list;
 
 }
 
