@@ -332,7 +332,8 @@ newPerson.name = person.name;
 console.log(person) //Expected Output : {name : "Jacob"}
 console.log(newPerson) //Expected Output : {name : "Jacob"}
 
-//since we initialized newPerson to an object literal, and then we assigned a name property, person and newPerson point to two seperate objects in memory
+//since we initialized newPerson to an object literal, and then we assigned a name property, person and newPerson point to two seperate objects in memory, and when we update one it won't affect the other.
+
 
 
 
