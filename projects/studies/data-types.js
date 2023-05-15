@@ -298,4 +298,51 @@ let message = "Hello World";
 let greeting = message;
 console.log(message) // Expected output : "Hello World"
 console.log(greeting) // Expected output : "Hello World"
-//Seems pretty straight forward right? We created greeting by assigning it to message, and by doing so we created two seperate variables, message and greeting. 
+//Seems pretty straight forward right? We created greeting by assigning it to message, and by doing so we created two seperate variables, message and greeting. If we do something to message, greeting will remain unchanged.
+message = message.toUpperCase()
+console.log(message)//Expected output : "HELLO WORLD"
+console.log(greeting) // Expected output : "Hello World"
+//This is how copy by value works
+
+//Objects are not like this. When we assign an object to a variable, our program stores its "address in memory" or a "reference to that object"
+
+let user = {
+  name: "Sibil",
+}
+//Above we created a variable pointing to/referencing and object with the property of name and it's value of Sibil
+//If we were to try to copy it to another variable, then we would have two seperate references of the same object
+let player = user;
+console.log(user) //Expected output : {name : "Sibil"}
+console.log(player) //Expected output : {name : "Sibil"}
+//Since the player variable assignment was made via copy by reference, anything we do to the user variable will modify the player variable and vice versa
+user.score = 150897
+console.log(user) //Expected Output {name : "Sibil", score : 150897}
+console.log(player) //Expected Output {name : "Sibil", score : 150897}
+delete player.score;
+console.log(player) //Expected Output {name : "Sibil"}
+console.log(user) //Expected Output {name : "Sibil"}
+
+//This can obvious have unintended an unexpected consequences. To avoid this, we would have to create a completely seperate object from the original, thus having two references to two seperate objects stored in our programs memory.
+
+let person = {
+  name : "Jacob"
+}
+let newPerson = {};
+newPerson.name = person.name;
+console.log(person) //Expected Output : {name : "Jacob"}
+console.log(newPerson) //Expected Output : {name : "Jacob"}
+
+//since we initialized newPerson to an object literal, and then we assigned a name property, person and newPerson point to two seperate objects in memory
+
+
+
+
+
+
+
+
+
+
+
+
+
