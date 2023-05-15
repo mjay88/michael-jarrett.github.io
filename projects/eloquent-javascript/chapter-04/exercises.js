@@ -92,7 +92,7 @@ for(let i = 0; i < Math.floor(arr.length/2); i++){
 ////////////////////////////////////////////////////////////////////////////////
 
 function arrayToList(arr) {
-console.log(arr);
+// console.log(arr);
 //  let list = {value : arr.length - 1, rest : null};
 let list = null;
 
@@ -100,7 +100,7 @@ let list = null;
    list = {value : arr[i], rest : list}
  }
 
- console.log(list);
+//  console.log(list);
  return list;
 
 }
@@ -109,7 +109,18 @@ let list = null;
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {}
+function listToArray(list) {
+console.log(list, 'list');
+let array = []
+for(let node = list; node; node = node.rest){
+
+array.push(node.value)
+}
+console.log(array)
+return array;
+
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
