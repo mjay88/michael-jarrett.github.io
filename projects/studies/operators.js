@@ -61,6 +61,24 @@ console.log(9 === 10) //Expect Output : false;
 console.log(12 != 3)//Expected output : true;
 console.log(4 != 2)//Expected output : false;
 
+//Ternary operator 
+//The 'ternary' operator, as known as the 'conditional' or 'question mark' operator, lets us execute the logic of and if/else statement in a much shorter syntax
+//Standard If/else statement
+let age = 21;
+
+if(age >= 21){
+    console.log("You may enter the bar")
+} else {
+    console.log("You are to young to enter")
+} 
+
+//shortened with the ternary syntax
+  age >= 21 ?  console.log("You may enter the bar") : console.log("You are to young to enter") // If the condition before the question mark doesn't resolve to true, the second condition will be executed.
+
+  
+
+
+
 //There are several operators that provide us with 'short-cuts', or a shortened syntax when it comes to basic math operators
 
 let number = 3;
