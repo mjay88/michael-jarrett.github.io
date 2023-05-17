@@ -108,6 +108,16 @@ function listToArray(list) {
   return array;
 }
 
+// function recursiveListToArray(list, output = []) {
+//   if (list === null) {
+//     return output;
+//   }
+
+//   output.push(list.value);
+
+//   return recursiveListToArray(list.rest, output);
+// }
+
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -169,46 +179,46 @@ function deepEqual(obj1, obj2) {
   if (!obj1 && !obj2) {
     return false;
   }
-// console.log('fuck')
+  // console.log('fuck')
   //make sure they are objects
   if (typeof obj1 === "object" && obj1 !== null) {
     if (typeof obj2 === "object" && obj2 !== null) {
-    for(let key in obj1){
-      //check if keys are the same
-       
-//check if key is object
-if(typeof obj1[key] === "object" && obj1[key] !== null){
-  if(typeof obj2[key] === "object" && obj2[key] !== null){
-    for(let el in obj1[key]){
-      console.log(Array.isArray(obj2[key][el]), obj2[key][el])
-      //check if keys are arrays
-      if(Array.isArray(obj1[key][el]) && Array.isArray(obj2[key][el])){
-        console.log(obj1[key][el], obj2[key][el], 'fucking arrays')
-        //now we can iterate through arrays and compare
-         for(let i = 0; i < obj1[key][el].length; i++){
-          console.log(obj1[key][el][i], obj2[key][el][i])
-          if(obj1[key][el][i] === obj2[key][el][i]){
-            return true
-          } else {
-            return false;
-          }
-         }
-      }
+      for (let key in obj1) {
+        //check if keys are the same
 
-      
-    }
-  }
-}
-if(obj1[key] !== obj2[key]){
-  return false
-}
-    
-    }
+        //check if key is object
+        if (typeof obj1[key] === "object" && obj1[key] !== null) {
+          if (typeof obj2[key] === "object" && obj2[key] !== null) {
+            for (let el in obj1[key]) {
+              console.log(Array.isArray(obj2[key][el]), obj2[key][el]);
+              //check if keys are arrays
+              if (
+                Array.isArray(obj1[key][el]) &&
+                Array.isArray(obj2[key][el])
+              ) {
+                console.log(obj1[key][el], obj2[key][el], "fucking arrays");
+                //now we can iterate through arrays and compare
+                for (let i = 0; i < obj1[key][el].length; i++) {
+                  console.log(obj1[key][el][i], obj2[key][el][i]);
+                  if (obj1[key][el][i] === obj2[key][el][i]) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+              }
+            }
+          }
+        }
+        //if object keys are not equavalent
+        if (obj1[key] !== obj2[key]) {
+          return false;
+        }
+      }
     }
   }
   //compare objects with same proprties but different values
   return true;
-  
 }
 
 ////////////////////////////////////////////////////////////////////////////////
