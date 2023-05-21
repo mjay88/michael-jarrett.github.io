@@ -94,3 +94,16 @@ let theLowerCaseRomanAlphabet = 'abcdefghijklmnopqrstuvwxyz';
 let az = 'abcdefghijklmnopqrstuvwxyz';
 //much better
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+//Hoisting
+//Nowadays we use let and const to declare our variables, but originally all there was to use was 'var'. The key difference between the varaible declarations of var, and let and const is the scope which these key words create. Scope in computer programming is our accesibility to variables. There are basically two scopes, global and block scope (sometimes called local scope). A global variable is accesible anywhere in our document. A block scoped variable is only available inside of the curly brackets in which it was created. Using the var keyword always creates a globally scoped varaible. Variables declared with let and const always blocked scoped, unless declared globally. 
+
+//To understand why this is important to know how our computer or browser executes our JavaScript file. When we run a js file, it is first scanned from top to bottom. Every variable declared with var and function declarations are found and then brought to the top of our document, (just there declarations, not there values or definitions). Then our js file runs again, executing our code from top to bottom. With var variables not being blocked scoped, this could cause problems within the order of our code being executed. Another quirk of the var key word is that it can be redeclared after initially being declared. If you lost track of a variable name and then redeclared it again assigning it a new value, this could also cause problems in your code.
+
+
+
+
+
+
+//In general we want our variables to be as private as possible, ie, we only want then accessible where we need them.  
+
