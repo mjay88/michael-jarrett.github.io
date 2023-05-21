@@ -221,6 +221,37 @@ function deepEqual(obj1, obj2) {
   return true;
 }
 
+// function deepEqual2(x, y){
+
+//   //determine if Both x and y are not objects
+//   if(typeof x !== 'object' && typeof y !== 'object'){
+//     return x === y
+//   }
+
+//   //determine if on of  the values is still not an object
+//   if(typeof x !== 'object' || typeof y !== 'object'){
+//     return false;
+//   }
+
+//   let xKeys = Object.keys(x); // ['a']
+//   let YKeys = Object.keys(y); // ['a', 'b'];
+// //compare lengths
+//   if(xKeys.length !== YKeys.length){
+//     return false;
+//   }
+
+//   for(let i = 0; i < xKeys.length; i++){
+//     //determine if yKeys doesn't include the current key
+//     //or does the result of invoking deepEqual on the values at those keys not return a truthy response
+//     if(!YKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i], y[xKeys[i]]])){
+//       return false;
+//     }
+//   }
+
+// return true;
+
+
+// }
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
