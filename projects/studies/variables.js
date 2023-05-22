@@ -100,10 +100,20 @@ let alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 //To understand why this is important to know how our computer or browser executes our JavaScript file. When we run a js file, it is essentially ran twice. It is first scanned from top to bottom. Every variable declared with var and function declarations are found and then brought or 'hoisted' to the top of our document, (just there declarations, not there values or definitions). Then our js file runs again, executing our code from top to bottom. If we used a variable assignment declared with 'var', and tried to access it before it's assignment, this could cause problems. Because var declarations are hoisted, our code wouldn't necessarily throw and error because that var variable is returning undefined. Finding an error like this could potentially be a big problem to debug. 
 
-//Best practices are to declare your functions and 
 
 
+//Best practices are to declare your variables at the top of your file to help reduce and errors or confusion caused by hoisting. 
 
+console.log(x) //this will print undefined
+
+var x = 'value';
+console.log(x) // this will print 'value';
+
+console.log(y)// this will return an error, because let variables are not hoisted
+let y = 'value2';
+
+console.log(z)// this will return an error, because let variables are not hoisted
+const z = 'value3';
 
 
 
