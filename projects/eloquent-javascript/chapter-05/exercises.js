@@ -17,7 +17,18 @@ function flatten(array) {
 // /////////////////////////////////////////////////////////////////////////////
 
 function loop(value, testFunc, updateFunc, bodyFunc) {
-// // console.log(value)
+
+
+// console.log(value, "value****************************************")
+//each iteration, it furst uns the test function on the current loop value and stops if that returns false
+
+for(let i = value; testFunc(i); i = updateFunc(i)){
+  bodyFunc(i)
+}
+
+}
+
+// console.log(value)
 // if(Array.isArray(value)){
 //  for(let arrayValue = 0; arrayValue < value.length; arrayValue++){
 //   if(testFunc(value[arrayValue]) === false){
@@ -61,7 +72,7 @@ function loop(value, testFunc, updateFunc, bodyFunc) {
   
 
 
-}
+// }
 
 // /////////////////////////////////////////////////////////////////////////////
 // every ///////////////////////////////////////////////////////////////////////
