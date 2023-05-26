@@ -98,52 +98,77 @@ return true;
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection(code) {
+function dominantDirection(string) {
+  //create a variable ltr and initialize as empty array
+  let ltr = [];
+ //create a variable rtl and initialize as empty array
+ let rtl = [];
 
-
-  let scripts = textScripts(code);
-  console.log(scripts);
-
-  function textScripts(text) {
-    let scripts = countBy(text, char => {
-      let script = characterScript(char.codePointAt(0));
-      return script ? script.name : "none";
-    }).filter(({name}) => name != "none");
-  
-    let total = scripts.reduce((n, {count}) => n + count, 0);
-    if (total == 0) return "No scripts found";
-  
-    return scripts.map(({name, count}) => {
-      return `${Math.round(count * 100 / total)}% ${name}`;
-    }).join(", ");
-  }
-
-
-
-  function characterScript(code) {
-    for (let script of SCRIPTS) {
-      if (script.ranges.some(([from, to]) => {
-        return code >= from && code < to;
-      })) {
-        return script;
-      }
+ //iterate through input string using for loop
+ for(let i = 0; i < string.length; i++){
+  //create a variable script and a ssign it the result of invoking characterSCript on the current character's char code
+  let script = characterScript(string.charCodeAt(i));//let script = {...}
+ 
+  //determine if script is not equal to null
+  if(script !== null){
+    if(script.direction === 'ltr'){
+      ltr.push(script);
     }
-    return null;
+  } else {
+      rtl.push(script);
   }
 
-  function countBy(items, groupName) {
-    let counts = [];
-    for (let item of items) {
-      let name = groupName(item);
-      let known = counts.findIndex(c => c.name == name);
-      if (known == -1) {
-        counts.push({name, count: 1});
-      } else {
-        counts[known].count++;
-      }
-    }
-    return counts;
-  }
+
+ }
+
+ if(ltr.length > rtl.length){
+  return 'ltr';
+} else {
+  return 'rtl';
+}
+  // let scripts = textScripts(code);
+  // console.log(scripts);
+
+  // function textScripts(text) {
+  //   let scripts = countBy(text, char => {
+  //     let script = characterScript(char.codePointAt(0));
+  //     return script ? script.name : "none";
+  //   }).filter(({name}) => name != "none");
+  
+  //   let total = scripts.reduce((n, {count}) => n + count, 0);
+  //   if (total == 0) return "No scripts found";
+  
+  //   return scripts.map(({name, count}) => {
+  //     return `${Math.round(count * 100 / total)}% ${name}`;
+  //   }).join(", ");
+  // }
+
+
+
+  // function characterScript(code) {
+  //   for (let script of SCRIPTS) {
+  //     if (script.ranges.some(([from, to]) => {
+  //       return code >= from && code < to;
+  //     })) {
+  //       return script;
+  //     }
+  //   }
+  //   return null;
+  // }
+
+  // function countBy(items, groupName) {
+  //   let counts = [];
+  //   for (let item of items) {
+  //     let name = groupName(item);
+  //     let known = counts.findIndex(c => c.name == name);
+  //     if (known == -1) {
+  //       counts.push({name, count: 1});
+  //     } else {
+  //       counts[known].count++;
+  //     }
+  //   }
+  //   return counts;
+  // }
   
 }
 
